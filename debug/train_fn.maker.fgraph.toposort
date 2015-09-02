@@ -1,0 +1,580 @@
+GpuDnnPoolDesc{ws=(3, 3), stride=(2, 2), mode='max', pad=(0, 0)}
+GpuDnnPoolDesc{ws=(3, 3), stride=(2, 2), mode='max', pad=(0, 0)}
+GpuDnnPoolDesc{ws=(3, 3), stride=(2, 2), mode='max', pad=(0, 0)}
+GpuDnnPoolDesc{ws=(3, 3), stride=(2, 2), mode='max', pad=(0, 0)}
+GpuDnnPoolDesc{ws=(3, 3), stride=(2, 2), mode='max', pad=(0, 0)}
+GpuDnnPoolDesc{ws=(3, 3), stride=(2, 2), mode='max', pad=(0, 0)}
+GpuDnnPoolDesc{ws=(3, 3), stride=(2, 2), mode='max', pad=(0, 0)}
+GpuDnnPoolDesc{ws=(3, 3), stride=(2, 2), mode='max', pad=(0, 0)}
+GpuDnnPoolDesc{ws=(3, 3), stride=(2, 2), mode='max', pad=(0, 0)}
+GpuDnnPoolDesc{ws=(3, 3), stride=(2, 2), mode='max', pad=(0, 0)}
+GpuDimShuffle{x,0}
+GpuDimShuffle{1,0}
+GpuDimShuffle{x,0}
+GpuDimShuffle{1,0}
+Shape_i{1}
+GpuDimShuffle{1,0}
+Shape_i{0}
+Shape_i{2}
+Shape_i{1}
+Shape_i{3}
+GpuFromHost
+GpuDimShuffle{x,0}
+GpuDimShuffle{x,0,x,x}
+Shape_i{3}
+Shape_i{2}
+Shape_i{1}
+Shape_i{0}
+GpuContiguous
+GpuDimShuffle{1,0,2,3}
+GpuDimShuffle{x,0,x,x}
+Shape_i{3}
+Shape_i{2}
+Shape_i{1}
+Shape_i{0}
+GpuContiguous
+GpuDimShuffle{1,0,2,3}
+Shape_i{3}
+Shape_i{2}
+Shape_i{1}
+Shape_i{0}
+GpuContiguous
+GpuDimShuffle{1,0,2,3}
+GpuDimShuffle{x,0,x,x}
+Shape_i{3}
+Shape_i{2}
+Shape_i{1}
+Shape_i{0}
+GpuContiguous
+GpuDimShuffle{1,0,2,3}
+GpuDimShuffle{x,0,x,x}
+Shape_i{3}
+Shape_i{2}
+Shape_i{1}
+Shape_i{0}
+GpuContiguous
+GpuDimShuffle{x,0,x,x}
+Shape_i{3}
+Shape_i{2}
+Shape_i{1}
+Shape_i{0}
+GpuContiguous
+GpuDimShuffle{1,0,2,3}
+GpuDimShuffle{x,0,x,x}
+GpuDimShuffle{x,0,x,x}
+Shape_i{3}
+Shape_i{2}
+Shape_i{1}
+Shape_i{0}
+GpuContiguous
+GpuDimShuffle{1,0,2,3}
+GpuDimShuffle{x,0,x,x}
+Shape_i{3}
+Shape_i{2}
+Shape_i{1}
+Shape_i{0}
+GpuContiguous
+GpuDimShuffle{1,0,2,3}
+Shape_i{0}
+GpuElemwise{Mul}[(0, 1)]
+GpuElemwise{Mul}[(0, 1)]
+GpuElemwise{Mul}[(0, 1)]
+GpuElemwise{Mul}[(0, 1)]
+GpuElemwise{Mul}[(0, 1)]
+GpuElemwise{Mul}[(0, 1)]
+GpuElemwise{Mul}[(0, 1)]
+GpuAllocEmpty
+GpuAllocEmpty
+GpuAllocEmpty
+GpuAllocEmpty
+GpuElemwise{Mul}[(0, 1)]
+GpuElemwise{Mul}[(0, 1)]
+GpuElemwise{Mul}[(0, 1)]
+GpuElemwise{Mul}[(0, 1)]
+GpuElemwise{Mul}[(0, 1)]
+GpuElemwise{Mul}[(0, 1)]
+GpuElemwise{Mul}[(0, 1)]
+GpuAllocEmpty
+GpuElemwise{Mul}[(0, 1)]
+GpuElemwise{Mul}[(0, 1)]
+GpuElemwise{Mul}[(0, 1)]
+GpuAllocEmpty
+GpuAllocEmpty
+GpuElemwise{Mul}[(0, 1)]
+GpuElemwise{Mul}[(0, 1)]
+GpuElemwise{Mul}[(0, 1)]
+GpuElemwise{mul,no_inplace}
+GpuElemwise{mul,no_inplace}
+
+# DimShuffleLayer started from here?
+MakeVector{dtype='int64'} # Why int64, NO!! 
+MakeVector{dtype='int64'}
+MakeVector{dtype='int64'}
+MakeVector{dtype='int64'}
+MakeVector{dtype='int64'}
+GpuAlloc{memset_0=True}
+MakeVector{dtype='int64'}
+GpuAlloc{memset_0=True}
+MakeVector{dtype='int64'}
+GpuAlloc{memset_0=True}
+GpuAlloc{memset_0=True}
+MakeVector{dtype='int64'}
+GpuAlloc{memset_0=True}
+GpuAlloc{memset_0=True}
+MakeVector{dtype='int64'}
+
+GpuDimShuffle{0,3,1,2}
+GpuDimShuffle{0,1,2,x,3}
+
+Elemwise{sub,no_inplace}(Shape_i{3}.0, TensorConstant{1})
+Elemwise{sub,no_inplace}(Shape_i{2}.0, TensorConstant{1})
+
+ # SliceLayer started from here?
+MakeVector{dtype='int64'}
+GpuSubtensor{::, ::, ::int64, ::int64}
+Elemwise{sub,no_inplace}(Shape_i{3}.0, TensorConstant{1})
+Elemwise{sub,no_inplace}(Shape_i{2}.0, TensorConstant{1})
+MakeVector{dtype='int64'}
+GpuSubtensor{::, ::, ::int64, ::int64}
+Elemwise{sub,no_inplace}(Shape_i{3}.0, TensorConstant{1})
+Elemwise{sub,no_inplace}(Shape_i{2}.0, TensorConstant{1})
+MakeVector{dtype='int64'}
+GpuSubtensor{::, ::, ::int64, ::int64}
+Elemwise{Composite{(((i0 - i1) // i2) + i2)}}(TensorConstant{31}, Shape_i{3}.0, TensorConstant{1})
+Elemwise{Composite{(Composite{Switch(LT(i0, i1), i1, i0)}(((i0 - i1) + i1), i2) - Switch(LT(Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 - i3), i0)}(Composite{((i0 - ((Switch(LT(i1, i2), i2, i1) - i3) * i4)) - i3)}(((i0 - i1) + i1), Composite{((((i0 - i1) - i2) // i3) + i2)}((i0 - i1), i3, i1, i4), i2, i1, i4), i2, ((i0 - i1) + i1), i1), i2), Composite{Switch(LT(i0, i1), i1, i0)}(((i0 - i1) + i1), i2)), Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 - i3), i0)}(Composite{((i0 - ((Switch(LT(i1, i2), i2, i1) - i3) * i4)) - i3)}(((i0 - i1) + i1), Composite{((((i0 - i1) - i2) // i3) + i2)}((i0 - i1), i3, i1, i4), i2, i1, i4), i2, ((i0 - i1) + i1), i1), i2), Composite{Switch(LT(i0, i1), i1, i0)}(((i0 - i1) + i1), i2)))}}(Shape_i{3}.0, TensorConstant{1}, TensorConstant{0}, TensorConstant{-1}, TensorConstant{1})
+Elemwise{Composite{(((i0 - i1) // i2) + i2)}}(TensorConstant{31}, Shape_i{2}.0, TensorConstant{1})
+Elemwise{Composite{(Composite{Switch(LT(i0, i1), i1, i0)}(((i0 - i1) + i1), i2) - Switch(LT(Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 - i3), i0)}(Composite{((i0 - ((Switch(LT(i1, i2), i2, i1) - i3) * i4)) - i3)}(((i0 - i1) + i1), Composite{((((i0 - i1) - i2) // i3) + i2)}((i0 - i1), i3, i1, i4), i2, i1, i4), i2, ((i0 - i1) + i1), i1), i2), Composite{Switch(LT(i0, i1), i1, i0)}(((i0 - i1) + i1), i2)), Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 - i3), i0)}(Composite{((i0 - ((Switch(LT(i1, i2), i2, i1) - i3) * i4)) - i3)}(((i0 - i1) + i1), Composite{((((i0 - i1) - i2) // i3) + i2)}((i0 - i1), i3, i1, i4), i2, i1, i4), i2, ((i0 - i1) + i1), i1), i2), Composite{Switch(LT(i0, i1), i1, i0)}(((i0 - i1) + i1), i2)))}}(Shape_i{2}.0, TensorConstant{1}, TensorConstant{0}, TensorConstant{-1}, TensorConstant{1})
+MakeVector{dtype='int64'}
+GpuSubtensor{::, ::, ::int64, ::int64}
+Elemwise{Composite{((((i0 + i1) - i2) // i3) + i4)}}(Shape_i{2}.0, TensorConstant{0}, Shape_i{3}.0, TensorConstant{4}, TensorConstant{1})
+Elemwise{Composite{(Composite{Switch(LT(i0, i1), i1, i0)}(i0, i1) - Switch(LT(Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 + i3), i0)}((i0 - Composite{Switch(LT(i0, i1), i1, i0)}(i0, i1)), i1, i2, i0), i1), Composite{Switch(LT(i0, i1), i1, i0)}(i0, i1)), Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 + i3), i0)}((i0 - Composite{Switch(LT(i0, i1), i1, i0)}(i0, i1)), i1, i2, i0), i1), Composite{Switch(LT(i0, i1), i1, i0)}(i0, i1)))}}(Shape_i{3}.0, TensorConstant{0}, TensorConstant{-1})
+Elemwise{Composite{(Composite{Switch(LT(i0, i1), i1, i0)}(i0, i1) - Switch(LT(Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 + i3), i0)}((i0 - Composite{Switch(LT(i0, i1), i1, i0)}(i0, i1)), i1, i2, i0), i1), Composite{Switch(LT(i0, i1), i1, i0)}(i0, i1)), Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 + i3), i0)}((i0 - Composite{Switch(LT(i0, i1), i1, i0)}(i0, i1)), i1, i2, i0), i1), Composite{Switch(LT(i0, i1), i1, i0)}(i0, i1)))}}(Shape_i{2}.0, TensorConstant{0}, TensorConstant{-1})
+MakeVector{dtype='int64'}
+GpuAlloc{memset_0=True}
+Elemwise{Composite{(((i0 - i1) // i2) + i2)}}(TensorConstant{31}, Shape_i{3}.0, TensorConstant{1})
+Elemwise{Composite{(Composite{Switch(LT(i0, i1), i1, i0)}(((i0 - i1) + i1), i2) - Switch(LT(Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 - i3), i0)}(Composite{((i0 - ((Switch(LT(i1, i2), i2, i1) - i3) * i4)) - i3)}(((i0 - i1) + i1), Composite{((((i0 - i1) - i2) // i3) + i2)}((i0 - i1), i3, i1, i4), i2, i1, i4), i2, ((i0 - i1) + i1), i1), i2), Composite{Switch(LT(i0, i1), i1, i0)}(((i0 - i1) + i1), i2)), Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 - i3), i0)}(Composite{((i0 - ((Switch(LT(i1, i2), i2, i1) - i3) * i4)) - i3)}(((i0 - i1) + i1), Composite{((((i0 - i1) - i2) // i3) + i2)}((i0 - i1), i3, i1, i4), i2, i1, i4), i2, ((i0 - i1) + i1), i1), i2), Composite{Switch(LT(i0, i1), i1, i0)}(((i0 - i1) + i1), i2)))}}(Shape_i{3}.0, TensorConstant{1}, TensorConstant{0}, TensorConstant{-1}, TensorConstant{1})
+Elemwise{Composite{(((i0 - i1) // i2) + i2)}}(TensorConstant{31}, Shape_i{2}.0, TensorConstant{1})
+Elemwise{Composite{(Composite{Switch(LT(i0, i1), i1, i0)}(((i0 - i1) + i1), i2) - Switch(LT(Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 - i3), i0)}(Composite{((i0 - ((Switch(LT(i1, i2), i2, i1) - i3) * i4)) - i3)}(((i0 - i1) + i1), Composite{((((i0 - i1) - i2) // i3) + i2)}((i0 - i1), i3, i1, i4), i2, i1, i4), i2, ((i0 - i1) + i1), i1), i2), Composite{Switch(LT(i0, i1), i1, i0)}(((i0 - i1) + i1), i2)), Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 - i3), i0)}(Composite{((i0 - ((Switch(LT(i1, i2), i2, i1) - i3) * i4)) - i3)}(((i0 - i1) + i1), Composite{((((i0 - i1) - i2) // i3) + i2)}((i0 - i1), i3, i1, i4), i2, i1, i4), i2, ((i0 - i1) + i1), i1), i2), Composite{Switch(LT(i0, i1), i1, i0)}(((i0 - i1) + i1), i2)))}}(Shape_i{2}.0, TensorConstant{1}, TensorConstant{0}, TensorConstant{-1}, TensorConstant{1})
+MakeVector{dtype='int64'}
+GpuSubtensor{::, ::, ::int64, ::int64}
+Elemwise{sub,no_inplace}(Shape_i{3}.0, TensorConstant{1})
+Elemwise{sub,no_inplace}(Shape_i{2}.0, TensorConstant{1})
+MakeVector{dtype='int64'}
+GpuSubtensor{::, ::, ::int64, ::int64}
+Elemwise{sub,no_inplace}(Shape_i{3}.0, TensorConstant{1})
+Elemwise{sub,no_inplace}(Shape_i{2}.0, TensorConstant{1})
+MakeVector{dtype='int64'}
+GpuSubtensor{::, ::, ::int64, ::int64}
+
+Elemwise{Cast{float64}}(Shape_i{0}.0) # FLOAT64!! seems from the call n_input_channel = l1.output_shape[1]
+
+Elemwise{Composite{((((i0 + i1) - i2) // i3) + i4)}}[(0, 0)]
+
+# Oh, int64 instances were casted into int32. So no problem yet? But float64?!
+Elemwise{Cast{int32}}
+Elemwise{Cast{int32}}
+GpuDnnConvDesc{border_mode='valid', subsample=(1, 1), conv_mode='cross'}
+GpuDnnConvDesc{border_mode='valid', subsample=(1, 1), conv_mode='cross'}
+GpuDnnConvDesc{border_mode='valid', subsample=(1, 1), conv_mode='cross'}
+GpuDnnConvDesc{border_mode='valid', subsample=(1, 1), conv_mode='cross'}
+GpuContiguous
+
+HostFromGpu # What were transfered to host here?
+
+Elemwise{Composite{((((i0 + (i1 * i2)) - i3) // i4) + i4)}}
+Elemwise{Composite{(Composite{Switch(LT(i0, i1), i1, i0)}((i0 + i1), i2) - Switch(LT(Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 - i3), i0)}(Composite{((i0 - ((Switch(LT(i1, i2), i2, i1) - i3) * i4)) - i3)}((i0 + i1), Composite{((((i0 - i1) - i2) // i3) + i2)}(i0, i3, i1, i4), i2, i1, i4), i2, (i0 + i1), i1), i2), Composite{Switch(LT(i0, i1), i1, i0)}((i0 + i1), i2)), Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 - i3), i0)}(Composite{((i0 - ((Switch(LT(i1, i2), i2, i1) - i3) * i4)) - i3)}((i0 + i1), Composite{((((i0 - i1) - i2) // i3) + i2)}(i0, i3, i1, i4), i2, i1, i4), i2, (i0 + i1), i1), i2), Composite{Switch(LT(i0, i1), i1, i0)}((i0 + i1), i2)))}}
+Elemwise{Composite{((((i0 + (i1 * i2)) - i3) // i4) + i4)}}
+Elemwise{Composite{(Composite{Switch(LT(i0, i1), i1, i0)}((i0 + i1), i2) - Switch(LT(Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 - i3), i0)}(Composite{((i0 - ((Switch(LT(i1, i2), i2, i1) - i3) * i4)) - i3)}((i0 + i1), Composite{((((i0 - i1) - i2) // i3) + i2)}(i0, i3, i1, i4), i2, i1, i4), i2, (i0 + i1), i1), i2), Composite{Switch(LT(i0, i1), i1, i0)}((i0 + i1), i2)), Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 - i3), i0)}(Composite{((i0 - ((Switch(LT(i1, i2), i2, i1) - i3) * i4)) - i3)}((i0 + i1), Composite{((((i0 - i1) - i2) // i3) + i2)}(i0, i3, i1, i4), i2, i1, i4), i2, (i0 + i1), i1), i2), Composite{Switch(LT(i0, i1), i1, i0)}((i0 + i1), i2)))}}
+GpuDnnConvDesc{border_mode='full', subsample=(1, 1), conv_mode='conv'}
+GpuContiguous
+Elemwise{Composite{((((i0 + (i1 * i2)) - i3) // i4) + i4)}}[(0, 3)]
+Elemwise{Composite{(Composite{Switch(LT(i0, i1), i1, i0)}((i0 + i1), i2) - Switch(LT(Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 - i3), i0)}(Composite{((i0 - ((Switch(LT(i1, i2), i2, i1) - i3) * i4)) - i3)}((i0 + i1), Composite{((((i0 - i1) - i2) // i3) + i2)}(i0, i3, i1, i4), i2, i1, i4), i2, (i0 + i1), i1), i2), Composite{Switch(LT(i0, i1), i1, i0)}((i0 + i1), i2)), Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 - i3), i0)}(Composite{((i0 - ((Switch(LT(i1, i2), i2, i1) - i3) * i4)) - i3)}((i0 + i1), Composite{((((i0 - i1) - i2) // i3) + i2)}(i0, i3, i1, i4), i2, i1, i4), i2, (i0 + i1), i1), i2), Composite{Switch(LT(i0, i1), i1, i0)}((i0 + i1), i2)))}}
+GpuDnnConvDesc{border_mode='full', subsample=(1, 1), conv_mode='conv'}
+GpuContiguous
+Elemwise{Composite{(Composite{Switch(LT(i0, i1), i1, i0)}((i0 + i1), i2) - Switch(LT(Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 - i3), i0)}(Composite{((i0 - ((Switch(LT(i1, i2), i2, i1) - i3) * i4)) - i3)}((i0 + i1), Composite{((((i0 - i1) - i2) // i3) + i2)}(i0, i3, i1, i4), i2, i1, i4), i2, (i0 + i1), i1), i2), Composite{Switch(LT(i0, i1), i1, i0)}((i0 + i1), i2)), Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 - i3), i0)}(Composite{((i0 - ((Switch(LT(i1, i2), i2, i1) - i3) * i4)) - i3)}((i0 + i1), Composite{((((i0 - i1) - i2) // i3) + i2)}(i0, i3, i1, i4), i2, i1, i4), i2, (i0 + i1), i1), i2), Composite{Switch(LT(i0, i1), i1, i0)}((i0 + i1), i2)))}}
+Elemwise{Composite{(Composite{Switch(LT(i0, i1), i1, i0)}((i0 + i1), i2) - Switch(LT(Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 - i3), i0)}(Composite{((i0 - ((Switch(LT(i1, i2), i2, i1) - i3) * i4)) - i3)}((i0 + i1), Composite{((((i0 - i1) - i2) // i3) + i2)}(i0, i3, i1, i4), i2, i1, i4), i2, (i0 + i1), i1), i2), Composite{Switch(LT(i0, i1), i1, i0)}((i0 + i1), i2)), Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 - i3), i0)}(Composite{((i0 - ((Switch(LT(i1, i2), i2, i1) - i3) * i4)) - i3)}((i0 + i1), Composite{((((i0 - i1) - i2) // i3) + i2)}(i0, i3, i1, i4), i2, i1, i4), i2, (i0 + i1), i1), i2), Composite{Switch(LT(i0, i1), i1, i0)}((i0 + i1), i2)))}}
+GpuDnnConvDesc{border_mode='full', subsample=(1, 1), conv_mode='conv'}
+GpuContiguous
+GpuAllocEmpty
+MakeVector{dtype='int64'}
+GpuDnnConvDesc{border_mode='valid', subsample=(1, 1), conv_mode='conv'}
+GpuDimShuffle{1,0,2,3}
+MakeVector{dtype='int64'}
+GpuDnnConvDesc{border_mode='valid', subsample=(4, 4), conv_mode='conv'}
+GpuAllocEmpty
+MakeVector{dtype='int64'}
+GpuDnnConvDesc{border_mode='valid', subsample=(1, 1), conv_mode='conv'}
+GpuDimShuffle{1,0,2,3}
+Elemwise{Composite{(Composite{Switch(LT(i0, i1), i1, i0)}((i0 + i1), i2) - Switch(LT(Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 - i3), i0)}(Composite{((i0 - ((Switch(LT(i1, i2), i2, i1) - i3) * i4)) - i3)}((i0 + i1), Composite{((((i0 - i1) - i2) // i3) + i2)}(i0, i3, i1, i4), i2, i1, i4), i2, (i0 + i1), i1), i2), Composite{Switch(LT(i0, i1), i1, i0)}((i0 + i1), i2)), Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 - i3), i0)}(Composite{((i0 - ((Switch(LT(i1, i2), i2, i1) - i3) * i4)) - i3)}((i0 + i1), Composite{((((i0 - i1) - i2) // i3) + i2)}(i0, i3, i1, i4), i2, i1, i4), i2, (i0 + i1), i1), i2), Composite{Switch(LT(i0, i1), i1, i0)}((i0 + i1), i2)))}}
+Elemwise{Composite{(Composite{Switch(LT(i0, i1), i1, i0)}((i0 + i1), i2) - Switch(LT(Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 - i3), i0)}(Composite{((i0 - ((Switch(LT(i1, i2), i2, i1) - i3) * i4)) - i3)}((i0 + i1), Composite{((((i0 - i1) - i2) // i3) + i2)}(i0, i3, i1, i4), i2, i1, i4), i2, (i0 + i1), i1), i2), Composite{Switch(LT(i0, i1), i1, i0)}((i0 + i1), i2)), Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 - i3), i0)}(Composite{((i0 - ((Switch(LT(i1, i2), i2, i1) - i3) * i4)) - i3)}((i0 + i1), Composite{((((i0 - i1) - i2) // i3) + i2)}(i0, i3, i1, i4), i2, i1, i4), i2, (i0 + i1), i1), i2), Composite{Switch(LT(i0, i1), i1, i0)}((i0 + i1), i2)))}}
+GpuDnnConvDesc{border_mode='full', subsample=(1, 1), conv_mode='conv'}
+GpuContiguous
+Elemwise{Composite{(Composite{Switch(LT(i0, i1), i1, i0)}((i0 + i1), i2) - Switch(LT(Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 - i3), i0)}(Composite{((i0 - ((Switch(LT(i1, i2), i2, i1) - i3) * i4)) - i3)}((i0 + i1), Composite{((((i0 - i1) - i2) // i3) + i2)}(i0, i3, i1, i4), i2, i1, i4), i2, (i0 + i1), i1), i2), Composite{Switch(LT(i0, i1), i1, i0)}((i0 + i1), i2)), Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 - i3), i0)}(Composite{((i0 - ((Switch(LT(i1, i2), i2, i1) - i3) * i4)) - i3)}((i0 + i1), Composite{((((i0 - i1) - i2) // i3) + i2)}(i0, i3, i1, i4), i2, i1, i4), i2, (i0 + i1), i1), i2), Composite{Switch(LT(i0, i1), i1, i0)}((i0 + i1), i2)))}}
+Elemwise{Composite{(Composite{Switch(LT(i0, i1), i1, i0)}((i0 + i1), i2) - Switch(LT(Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 - i3), i0)}(Composite{((i0 - ((Switch(LT(i1, i2), i2, i1) - i3) * i4)) - i3)}((i0 + i1), Composite{((((i0 - i1) - i2) // i3) + i2)}(i0, i3, i1, i4), i2, i1, i4), i2, (i0 + i1), i1), i2), Composite{Switch(LT(i0, i1), i1, i0)}((i0 + i1), i2)), Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 - i3), i0)}(Composite{((i0 - ((Switch(LT(i1, i2), i2, i1) - i3) * i4)) - i3)}((i0 + i1), Composite{((((i0 - i1) - i2) // i3) + i2)}(i0, i3, i1, i4), i2, i1, i4), i2, (i0 + i1), i1), i2), Composite{Switch(LT(i0, i1), i1, i0)}((i0 + i1), i2)))}}
+GpuDnnConvDesc{border_mode='full', subsample=(1, 1), conv_mode='conv'}
+GpuContiguous
+InplaceDimShuffle{x,x}
+GpuAllocEmpty
+Elemwise{Composite{(Composite{Switch(LT(i0, i1), i1, i0)}((i0 + i1), i2) - Switch(LT(Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 - i3), i0)}(Composite{((i0 - ((Switch(LT(i1, i2), i2, i1) - i3) * i4)) - i3)}((i0 + i1), Composite{((((i0 - i1) - i2) // i3) + i2)}(i0, i3, i1, i4), i2, i1, i4), i2, (i0 + i1), i1), i2), Composite{Switch(LT(i0, i1), i1, i0)}((i0 + i1), i2)), Composite{Switch(LT(i0, i1), i1, i0)}(Composite{Switch(LT(i0, i1), (i2 - i3), i0)}(Composite{((i0 - ((Switch(LT(i1, i2), i2, i1) - i3) * i4)) - i3)}((i0 + i1), Composite{((((i0 - i1) - i2) // i3) + i2)}(i0, i3, i1, i4), i2, i1, i4), i2, (i0 + i1), i1), i2), Composite{Switch(LT(i0, i1), i1, i0)}((i0 + i1), i2)))}}[(0, 0)]
+Elemwise{Composite{((((i0 + (i1 * i2)) - i3) // i4) + i4)}}[(0, 2)]
+Elemwise{Composite{((((i0 + (i1 * i2)) - i3) // i4) + i4)}}[(0, 2)]
+Elemwise{Composite{((((i0 + (i1 * i2)) - i3) // i4) + i4)}}[(0, 2)]
+Elemwise{Composite{((i0 + i1) - i2)}}[(0, 1)]
+Elemwise{Composite{((i0 + i1) - i2)}}[(0, 1)]
+Elemwise{Composite{((i0 + i1) - i2)}}[(0, 1)]
+Elemwise{Composite{((i0 + i1) - i2)}}[(0, 1)]
+Elemwise{Composite{((((i0 + (i1 * i2)) - i3) // i4) + i4)}}[(0, 2)]
+Elemwise{Composite{((((i0 + (i1 * i2)) - i3) // i4) + i4)}}[(0, 2)]
+Elemwise{Composite{((((i0 + (i1 * i2)) - i3) // i4) + i4)}}[(0, 2)]
+Elemwise{Composite{((((i0 + (i1 * i2)) - i3) // i4) + i4)}}[(0, 2)]
+GPU_mrg_uniform{CudaNdarrayType(float32, matrix),inplace}
+GPU_mrg_uniform{CudaNdarrayType(float32, 4D),inplace}
+GpuAllocEmpty
+MakeVector{dtype='int64'}
+MakeVector{dtype='int64'}
+GpuContiguous
+GpuContiguous
+MakeVector{dtype='int64'}
+MakeVector{dtype='int64'}
+Elemwise{Composite{Cast{float32}((Cast{float64}((-i0)) / i1))}}
+GpuDnnConv{algo='small', inplace=True}
+Elemwise{Composite{(((i0 - i1) // i2) + i2)}}[(0, 1)]
+Elemwise{Composite{(((i0 - i1) // i2) + i2)}}[(0, 1)]
+MakeVector{dtype='int64'}
+GpuAllocEmpty
+GpuAllocEmptyfloat64
+Elemwise{Composite{(((i0 - i1) // i2) + i2)}}[(0, 1)]
+Elemwise{Composite{(((i0 - i1) // i2) + i2)}}[(0, 1)]
+MakeVector{dtype='int64'}
+GpuAllocEmpty
+MakeVector{dtype='int64'}
+GpuAllocEmpty
+GpuAllocEmpty
+Elemwise{Composite{(((i0 - i1) // i2) + i2)}}[(0, 1)]
+Elemwise{Composite{(((i0 - i1) // i2) + i2)}}[(0, 1)]
+GpuAllocEmpty
+Elemwise{Composite{(((i0 - i1) // i2) + i2)}}[(0, 1)]
+Elemwise{Composite{(((i0 - i1) // i2) + i2)}}[(0, 1)]
+GpuElemwise{Composite{Cast{float32}(LT(i0, i1))},no_inplace}
+GpuElemwise{Composite{Cast{float32}(LT(i0, i1))},no_inplace}
+GpuDnnConvDesc{border_mode='valid', subsample=(1, 1), conv_mode='conv'}
+Elemwise{Composite{(((i0 - i1) // i2) + i2)}}[(0, 1)]
+Elemwise{Composite{(((i0 - i1) // i2) + i2)}}[(0, 1)]
+GpuDnnConvDesc{border_mode='valid', subsample=(1, 1), conv_mode='conv'}
+GpuDnnConvDesc{border_mode='valid', subsample=(1, 1), conv_mode='conv'}
+GpuDnnConvDesc{border_mode='valid', subsample=(1, 1), conv_mode='conv'}
+GpuFromHost
+GpuElemwise{add,no_inplace}
+GpuAllocEmpty
+GpuDnnConvDesc{border_mode='valid', subsample=(1, 1), conv_mode='conv'}
+GpuAllocEmpty
+GpuDnnConvDesc{border_mode='valid', subsample=(1, 1), conv_mode='cross'}
+GpuDnnConvDesc{border_mode='valid', subsample=(1, 1), conv_mode='cross'}
+GpuAllocEmpty
+GpuAllocEmpty
+GpuAllocEmpty
+GpuElemwise{Composite{(i0 * (i1 + Abs(i1)))},no_inplace}
+GpuContiguous
+GpuDnnPool
+GpuSubtensor{::, :int64:}
+GpuSubtensor{::, int64::}
+GpuContiguous
+GpuIncSubtensor{Set;::, ::, int64:int64:, int64:int64:}
+GpuIncSubtensor{InplaceSet;::, ::, int64:int64:, int64:int64:}
+GpuContiguous
+GpuDimShuffle{1,0,2,3}
+GpuContiguous
+GpuDimShuffle{1,0,2,3}
+GpuDnnConv{algo='small', inplace=True}
+GpuDimShuffle{1,0,2,3}
+GpuDnnConv{algo='small', inplace=True}
+GpuDimShuffle{1,0,2,3}
+GpuElemwise{add,no_inplace}
+GpuContiguous
+GpuElemwise{add,no_inplace}
+GpuContiguous
+GpuElemwise{Composite{(i0 * (i1 + Abs(i1)))},no_inplace}
+GpuElemwise{Composite{(i0 * (i1 + Abs(i1)))},no_inplace}
+GpuContiguous
+GpuContiguous
+GpuDnnPool
+GpuDnnPool
+GpuContiguous
+GpuJoin
+GpuContiguous
+GpuContiguous
+GpuDimShuffle{1,0,2,3}
+GpuDnnConv{algo='small', inplace=True}
+GpuSubtensor{::, ::, ::int64, ::int64}
+GpuSubtensor{::, ::, int64:int64:, int64:int64:}
+GpuSubtensor{::, ::, ::int64, ::int64}
+GpuElemwise{Add}[(0, 0)]
+GpuDimShuffle{1,0,2,3}
+GpuElemwise{Composite{(i0 * (i1 + Abs(i1)))},no_inplace}
+GpuContiguous
+GpuSubtensor{::, int64::}
+GpuSubtensor{::, :int64:}
+GpuContiguous
+GpuDimShuffle{1,0,2,3}
+GpuContiguous
+GpuDimShuffle{1,0,2,3}
+GpuDnnConv{algo='small', inplace=True}
+GpuSubtensor{::, ::, ::int64, ::int64}
+GpuDnnConv{algo='small', inplace=True}
+GpuSubtensor{::, ::, ::int64, ::int64}
+GpuSubtensor{::, ::, int64:int64:, int64:int64:}
+GpuSubtensor{::, ::, ::int64, ::int64}
+GpuSubtensor{::, ::, int64:int64:, int64:int64:}
+GpuSubtensor{::, ::, ::int64, ::int64}
+GpuElemwise{add,no_inplace}
+GpuDimShuffle{1,0,2,3}
+GpuElemwise{add,no_inplace}
+GpuDimShuffle{1,0,2,3}
+GpuElemwise{Composite{(i0 * (i1 + Abs(i1)))},no_inplace}
+GpuContiguous
+GpuElemwise{Composite{(i0 * (i1 + Abs(i1)))},no_inplace}
+GpuContiguous
+GpuContiguous
+GpuDimShuffle{1,0,2,3}
+GpuContiguous
+GpuDimShuffle{1,0,2,3}
+GpuDnnConv{algo='small', inplace=True}
+GpuSubtensor{::, ::, ::int64, ::int64}
+GpuDnnConv{algo='small', inplace=True}
+GpuSubtensor{::, ::, ::int64, ::int64}
+GpuSubtensor{::, ::, int64:int64:, int64:int64:}
+GpuSubtensor{::, ::, ::int64, ::int64}
+GpuSubtensor{::, ::, int64:int64:, int64:int64:}
+GpuSubtensor{::, ::, ::int64, ::int64}
+GpuElemwise{add,no_inplace}
+GpuDimShuffle{1,0,2,3}
+GpuElemwise{add,no_inplace}
+GpuDimShuffle{1,0,2,3}
+GpuElemwise{Composite{(i0 * (i1 + Abs(i1)))},no_inplace}
+GpuContiguous
+GpuElemwise{Composite{(i0 * (i1 + Abs(i1)))},no_inplace}
+GpuContiguous
+GpuContiguous
+GpuContiguous
+GpuDnnPool
+GpuDnnPool
+GpuContiguous
+GpuJoin
+GpuContiguous
+GpuElemwise{mul,no_inplace}
+GpuFlatten{2}
+GpuDot22
+GpuDimShuffle{1,0}
+GpuElemwise{Add}[(0, 0)]
+GpuElemwise{Composite{((i0 + Abs(i0)) * i1)},no_inplace}
+GpuDot22
+GpuDimShuffle{1,0}
+GpuElemwise{add,no_inplace}
+GpuElemwise{Composite{(i0 * (i1 + Abs(i1)))},no_inplace}
+GpuDot22
+GpuDimShuffle{1,0}
+GpuSoftmaxWithBias
+GpuElemwise{add,no_inplace}
+GpuDimShuffle{0,1,x,x}
+GpuElemwise{true_div,no_inplace}
+GpuCAReduce{maximum}{0,1}
+GpuContiguous
+GpuDimShuffle{0,1,x,x}
+GpuDimShuffle{0,x}
+GpuContiguous
+GpuElemwise{sub,no_inplace}
+GpuDnnSoftmaxGrad{tensor_format='bc01', mode='channel', algo='accurate'}
+GpuElemwise{exp,no_inplace}
+GpuDimShuffle{0,1}
+GpuCAReduce{add}{0,1}
+GpuCAReduce{add}{1,0}
+GpuDot22
+GpuDot22Scalar
+GpuDimShuffle{0,x}
+GpuElemwise{Composite{(i0 * sqr(i1))},no_inplace}
+GpuElemwise{Composite{(i0 * sqr(i1))},no_inplace}
+GpuElemwise{Composite{(i0 + (i0 * sgn(i1)))},no_inplace}
+GpuElemwise{Log}[(0, 0)]
+GpuElemwise{add,no_inplace}
+GpuElemwise{Composite{(i0 - (i1 / sqrt((i2 + i3 + i4))))},no_inplace}
+GpuElemwise{add,no_inplace}
+GpuElemwise{Composite{(i0 - (i1 / sqrt((i2 + i3 + i4))))},no_inplace}
+GpuCAReduce{add}{1,0}
+GpuDot22
+GpuDot22
+GpuElemwise{sub,no_inplace}
+GpuElemwise{Composite{(i0 * sqr(i1))},no_inplace}
+GpuElemwise{Composite{(i0 * sqr(i1))},no_inplace}
+GpuElemwise{Composite{((i0 * i1) + (i0 * i1 * sgn(i2)))},no_inplace}
+HostFromGpu
+GpuElemwise{add,no_inplace}
+GpuElemwise{add,no_inplace}
+GpuElemwise{Composite{(i0 - (i1 / sqrt((i2 + i3 + i4))))},no_inplace}
+GpuCAReduce{add}{1,0}
+GpuDot22
+GpuDot22
+Elemwise{mul,no_inplace}
+GpuElemwise{Composite{(i0 - (i1 / sqrt((i2 + i3 + i4))))}}[(0, 4)]
+GpuElemwise{Composite{(i0 * sqr(i1))},no_inplace}
+GpuElemwise{Composite{(i0 * sqr(i1))},no_inplace}
+GpuReshape{4}
+Sum{axis=[1], acc_dtype=float64}
+GpuElemwise{add,no_inplace}
+GpuElemwise{Composite{(i0 - (i1 / sqrt((i2 + i3 + i4))))},no_inplace}
+GpuElemwise{add,no_inplace}
+GpuElemwise{Composite{(i0 - (i1 / sqrt((i2 + i3 + i4))))},no_inplace}
+GpuElemwise{mul,no_inplace}
+Sum{acc_dtype=float64}
+GpuSplit{2}
+Elemwise{Composite{((-i0) / i1)}}[(0, 0)]
+GpuContiguous
+GpuContiguous
+GpuDnnPoolGrad
+GpuDnnPoolGrad
+GpuElemwise{Composite{((i0 * i1) + (i0 * i1 * sgn(i2)))}}[(0, 2)]
+GpuElemwise{Composite{((i0 * i1) + (i0 * i1 * sgn(i2)))},no_inplace}
+GpuCAReduce{add}{1,0,1,1}
+GpuIncSubtensor{Inc;::, ::, int64:int64:, int64:int64:}
+GpuCAReduce{add}{1,0,1,1}
+GpuIncSubtensor{InplaceInc;::, ::, int64:int64:, int64:int64:}
+GpuElemwise{Composite{(i0 * sqr(i1))},no_inplace}
+GpuContiguous
+GpuDimShuffle{1,0,2,3}
+GpuElemwise{Composite{(i0 * sqr(i1))},no_inplace}
+GpuDimShuffle{1,0,2,3}
+GpuContiguous
+GpuElemwise{add,no_inplace}
+GpuElemwise{Composite{(i0 - (i1 / sqrt((i2 + i3 + i4))))},no_inplace}
+GpuDnnConv{algo='small', inplace=True}
+GpuDimShuffle{1,0,2,3}
+GpuElemwise{add,no_inplace}
+GpuElemwise{Composite{(i0 - (i1 / sqrt((i2 + i3 + i4))))},no_inplace}
+GpuDimShuffle{1,0,2,3}
+GpuDnnConv{algo='small', inplace=True}
+GpuElemwise{Composite{((i0 * i1) + (i0 * i1 * sgn(i2)))},no_inplace}
+GpuContiguous
+GpuContiguous
+GpuElemwise{Composite{((i0 * i1) + (i0 * i1 * sgn(i2)))},no_inplace}
+GpuIncSubtensor{Inc;::, ::, int64:int64:, int64:int64:}
+GpuCAReduce{add}{1,0,1,1}
+GpuDnnConvGradW{algo='none', inplace=True}
+GpuDnnConvGradW{algo='none', inplace=True}
+GpuCAReduce{add}{1,0,1,1}
+GpuIncSubtensor{InplaceInc;::, ::, int64:int64:, int64:int64:}
+GpuDimShuffle{1,0,2,3}
+GpuContiguous
+GpuElemwise{Composite{(i0 * sqr(i1))},no_inplace}
+GpuDimShuffle{1,0,2,3}
+GpuDimShuffle{1,0,2,3}
+GpuElemwise{Composite{(i0 * sqr(i1))},no_inplace}
+GpuDimShuffle{1,0,2,3}
+GpuContiguous
+GpuDimShuffle{1,0,2,3}
+GpuDnnConv{algo='small', inplace=True}
+GpuElemwise{add,no_inplace}
+GpuElemwise{Composite{(i0 - (i1 / sqrt((i2 + i3 + i4))))},no_inplace}
+GpuElemwise{Composite{(i0 * sqr(i1))},no_inplace}
+GpuElemwise{Composite{(i0 * sqr(i1))},no_inplace}
+GpuElemwise{Composite{(i0 - (i1 / sqrt((i2 + i3 + i4))))},no_inplace}
+GpuDimShuffle{1,0,2,3}
+GpuDnnConv{algo='small', inplace=True}
+GpuElemwise{Add}[(0, 0)]
+GpuContiguous
+GpuIncSubtensor{InplaceInc;::, :int64:}
+GpuElemwise{add,no_inplace}
+GpuElemwise{Composite{(i0 - (i1 / sqrt((i2 + i3 + i4))))},no_inplace}
+GpuElemwise{add,no_inplace}
+GpuElemwise{Composite{(i0 - (i1 / sqrt((i2 + i3 + i4))))},no_inplace}
+GpuContiguous
+GpuDnnConvGradW{algo='none', inplace=True}
+GpuIncSubtensor{InplaceInc;::, int64::}
+GpuDnnConvGradW{algo='none', inplace=True}
+GpuDimShuffle{1,0,2,3}
+GpuElemwise{Composite{((i0 * i1) + (i0 * i1 * sgn(i2)))},no_inplace}
+GpuDimShuffle{1,0,2,3}
+GpuElemwise{Composite{(i0 * sqr(i1))},no_inplace}
+GpuCAReduce{add}{1,0,1,1}
+GpuIncSubtensor{InplaceInc;::, ::, int64:int64:, int64:int64:}
+GpuElemwise{Composite{(i0 * sqr(i1))},no_inplace}
+GpuElemwise{add,no_inplace}
+GpuElemwise{Composite{(i0 - (i1 / sqrt((i2 + i3 + i4))))},no_inplace}
+GpuElemwise{Composite{(i0 * sqr(i1))},no_inplace}
+GpuDimShuffle{1,0,2,3}
+GpuContiguous
+GpuElemwise{Composite{(i0 - (i1 / sqrt((i2 + i3 + i4))))},no_inplace}
+GpuElemwise{Add}[(0, 0)]
+GpuElemwise{add,no_inplace}
+GpuElemwise{Composite{(i0 - (i1 / sqrt((i2 + i3 + i4))))},no_inplace}
+GpuDimShuffle{1,0,2,3}
+GpuDnnConv{algo='small', inplace=True}
+GpuContiguous
+GpuSplit{2}
+GpuDnnConvGradW{algo='none', inplace=True}
+GpuContiguous
+GpuContiguous
+GpuDimShuffle{1,0,2,3}
+GpuDnnPoolGrad
+GpuDnnPoolGrad
+GpuElemwise{Composite{(i0 * sqr(i1))},no_inplace}
+GpuElemwise{Composite{((i0 * i1) + (i0 * i1 * sgn(i2)))},no_inplace}
+GpuElemwise{Composite{((i0 * i1) + (i0 * i1 * sgn(i2)))},no_inplace}
+GpuElemwise{Composite{(i0 - (i1 / sqrt((i2 + i3 + i4))))},no_inplace}
+GpuCAReduce{add}{1,0,1,1}
+GpuDimShuffle{1,0,2,3}
+GpuContiguous
+GpuCAReduce{add}{1,0,1,1}
+GpuDimShuffle{1,0,2,3}
+GpuContiguous
+GpuElemwise{Add}[(0, 1)]
+GpuElemwise{Composite{(i0 * sqr(i1))},no_inplace}
+GpuSubtensor{::, ::, ::int64, ::int64}
+GpuDnnConvGradI{algo='none', inplace=True}
+GpuElemwise{Composite{(i0 * sqr(i1))},no_inplace}
+GpuSubtensor{::, ::, ::int64, ::int64}
+GpuDnnConvGradI{algo='none', inplace=True}
+GpuElemwise{add,no_inplace}
+GpuElemwise{Composite{(i0 - (i1 / sqrt((i2 + i3 + i4))))},no_inplace}
+GpuSubtensor{::, ::, ::int64, ::int64}
+GpuSubtensor{::, ::, int64:int64:, int64:int64:}
+GpuElemwise{add,no_inplace}
+GpuElemwise{Composite{(i0 - (i1 / sqrt((i2 + i3 + i4))))},no_inplace}
+GpuSubtensor{::, ::, ::int64, ::int64}
+GpuSubtensor{::, ::, int64:int64:, int64:int64:}
+GpuDimShuffle{1,0,2,3}
+GpuDimShuffle{1,0,2,3}
+GpuIncSubtensor{InplaceInc;::, :int64:}
+GpuContiguous
+GpuContiguous
+GpuIncSubtensor{InplaceInc;::, int64::}
+GpuDnnConvGradW{algo='none', inplace=True}
+GpuDnnConvGradW{algo='none', inplace=True}
+GpuContiguous
+GpuDimShuffle{1,0,2,3}
+GpuDimShuffle{1,0,2,3}
+GpuDnnPoolGrad
+GpuDimShuffle{1,0,2,3}
+GpuDimShuffle{1,0,2,3}
+GpuElemwise{Composite{((i0 * i1) + (i0 * i1 * sgn(i2)))},no_inplace}
+GpuSubtensor{::, ::, ::int64, ::int64}
+GpuSubtensor{::, ::, ::int64, ::int64}
+GpuCAReduce{add}{1,0,1,1}
+GpuDimShuffle{0,2,3,x,1}
+GpuElemwise{Composite{(i0 * sqr(i1))},no_inplace}
+GpuElemwise{Composite{(i0 * sqr(i1))},no_inplace}
+GpuElemwise{Composite{(i0 * sqr(i1))},no_inplace}
+Rebroadcast{?,?,?,0}
+GpuElemwise{Composite{(i0 - (i1 / sqrt((i2 + i3 + i4))))},no_inplace}
+GpuElemwise{add,no_inplace}
+GpuElemwise{Composite{(i0 - (i1 / sqrt((i2 + i3 + i4))))},no_inplace}
+GpuElemwise{add,no_inplace}
+GpuElemwise{Composite{(i0 - (i1 / sqrt((i2 + i3 + i4))))},no_inplace}
+HostFromGpu
+GpuElemwise{Add}[(0, 0)]
+ConvGrad3D
+Rebroadcast{?,?,?,1}
+GpuFromHost
+GpuDimShuffle{0,4,1,2}
+GpuIncSubtensor{InplaceInc;::, ::, ::int64, ::int64}
+GpuElemwise{Composite{(i0 * sqr(i1))},no_inplace}
+GpuElemwise{add,no_inplace}
+GpuElemwise{Composite{(i0 - (i1 / sqrt((i2 + i3 + i4))))},no_inplace}
