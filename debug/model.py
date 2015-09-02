@@ -184,3 +184,51 @@ va_loss = lasagne.objectives.categorical_crossentropy(va_prediction,
 va_loss = va_loss.mean()
 
 va_fn = theano.function([input_var, target_var], va_loss)
+
+# TRAINING
+def main(num_epochs=500, batchsize=96, toy=True, 
+         Xtr=Xtr, Ytr=Ytr, Xva=Xva, Yva=Yva):
+       
+    # Sanity check: try to overfit a tiny (20 instances) subset of the data
+    if toy: 
+        batchsize = 20
+        # generate a tiny subset of training data
+        # ...
+
+    print "Starting training with batchsize of %d ..." %(batchsize)    
+    for epoch in range(num_epochs):
+        # In each epoch, we do a full pass over the training data:
+        train_err = 0
+        train_batches = 0
+        start_time = time.time()
+        for batch in iterate_minibatches(Xtr, Ytr, batchsize, shuffle=True):
+            inputs, targets = batch
+            train_err += train_fn(inputs, targets)
+            train_batches += 1
+
+        # And a full pass over the validation data:
+        if not toy:
+            va_err = 0
+            va_batches = 0
+            for batch in iterate_minibatches(Xva, Yva, batchsize, shuffle=False):
+                inputs, targets = batch
+                err = va_fn(inputs, targets)
+                va_err += err
+                va_batches += 1
+
+        # Then we print the results for this epoch:
+        print("Epoch {} of {} took {:.3f}s".format(
+            epoch + 1, num_epochs, time.time() - start_time))
+        print("  training loss:\t\t{:.6f}".format(train_err / train_batches))
+        if not toy:
+            print("  validation loss:\t\t{:.6f}".format(va_err / va_batches))
+
+            # Save the model 
+            if epoch%2==0: 
+                np.savez('Data/MSRCv2/model_'+str(epoch)+'.npz', lasagne.layers.get_all_param_values(net0))
+        
+        if toy and np.allclose(train_err,0):
+            print "Error for toy problem is 0. Training finished"
+            break
+
+main()
