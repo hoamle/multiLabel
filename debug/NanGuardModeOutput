@@ -1,0 +1,443 @@
+Starting training with batchsize of 10 ...
+ERROR (theano.compile.nanguardmode): Big value detected
+ERROR (theano.compile.nanguardmode): In an output
+ERROR (theano.compile.nanguardmode): Inputs: 
+ERROR (theano.compile.nanguardmode): var
+ERROR (theano.compile.nanguardmode): GpuElemwise{Composite{(i0 * (i1 + Abs(i1)))},no_inplace}.0
+ERROR (theano.compile.nanguardmode): A. GpuElemwise{Composite{(i0 * (i1 + Abs(i1)))},no_inplace}
+ B. CudaNdarrayConstant{[[ 0.5]]}
+ C. GpuElemwise{Add}[(0, 0)]
+  D. GpuDot22
+   E. GpuFlatten{2}
+    F. GpuJoin
+     G. TensorConstant{1}
+     H. GpuDnnPool
+      I. GpuContiguous
+       J. GpuElemwise{Composite{(i0 * (i1 + Abs(i1)))},no_inplace}
+        K. CudaNdarrayConstant{[[[[ 0.5]]]]}
+        L. GpuElemwise{Add}[(0, 0)]
+         M. GpuDnnConv{algo='small', inplace=True}
+          N. GpuContiguous
+           O. GpuElemwise{Composite{(i0 * (i1 + Abs(i1)))},no_inplace}
+            <K>
+            P. GpuElemwise{Add}[(0, 0)]
+             Q. GpuDnnConv{algo='small', inplace=True}
+              R. GpuContiguous
+               S. GpuSubtensor{::, :int64:}
+                T. GpuElemwise{Composite{(i0 * (i1 + Abs(i1)))},no_inplace}
+                 <K>
+                 U. GpuElemwise{Add}[(0, 0)]
+                  V. GpuDnnConv{algo='small', inplace=True}
+                   W. GpuContiguous
+                    X. GpuJoin
+                     <G>
+                     Y. GpuDnnPool
+                      Z. GpuContiguous
+                       BA. GpuElemwise{Composite{(i0 * (i1 + Abs(i1)))},no_inplace}
+                        <K>
+                        BB. GpuElemwise{Add}[(0, 0)]
+                         BC. GpuDnnConv{algo='small', inplace=True}
+                          BD. GpuContiguous
+                           BE. GpuSubtensor{::, :int64:}
+                            BF. GpuDnnPool
+                             BG. GpuContiguous
+                              BH. GpuElemwise{Composite{(i0 * (i1 + Abs(i1)))},no_inplace}
+                               <K>
+                               BI. GpuElemwise{Add}[(0, 0)]
+                                BJ. GpuDnnConv{algo='small', inplace=True}
+                                 BK. GpuContiguous
+                                  BL. GpuFromHost
+                                   BM. inputs
+                                 BN. GpuContiguous
+                                  BO. W
+                                 BP. GpuAllocEmpty
+                                  BQ. Shape_i{0}
+                                   <BM>
+                                  BR. Shape_i{0}
+                                   <BO>
+                                  BS. Elemwise{add,no_inplace}
+                                   BT. TensorConstant{1}
+                                   BU. Elemwise{Composite{((i0 - i1) // i2)}}[(0, 0)]
+                                    BV. Shape_i{2}
+                                     <BM>
+                                    BW. Shape_i{2}
+                                     <BO>
+                                    BX. TensorConstant{4}
+                                  BY. Elemwise{add,no_inplace}
+                                   <BT>
+                                   BZ. Elemwise{Composite{((i0 - i1) // i2)}}[(0, 0)]
+                                    CA. Shape_i{3}
+                                     <BM>
+                                    CB. Shape_i{3}
+                                     <BO>
+                                    <BX>
+                                 CC. GpuDnnConvDesc{border_mode=(0, 0), subsample=(4, 4), conv_mode='cross'}
+                                  CD. MakeVector{dtype='int64'}
+                                   <BQ>
+                                   CE. Shape_i{1}
+                                    <BM>
+                                   <BV>
+                                   <CA>
+                                  CF. MakeVector{dtype='int64'}
+                                   <BR>
+                                   CG. Shape_i{1}
+                                    <BO>
+                                   <BW>
+                                   <CB>
+                                 CH. Constant{1.0}
+                                 CI. Constant{0.0}
+                                CJ. GpuDimShuffle{x,0,x,x}
+                                 CK. b
+                             CL. GpuDnnPoolDesc{ws=(3, 3), stride=(2, 2), mode='max', pad=(0, 0)}
+                            CM. Constant{48}
+                          CN. GpuContiguous
+                           CO. W
+                          CP. GpuAllocEmpty
+                           CQ. Shape_i{0}
+                            <BK>
+                           CR. Shape_i{0}
+                            <CO>
+                           CS. Elemwise{Sub}[(0, 1)]
+                            CT. Elemwise{add,no_inplace}
+                             CU. TensorConstant{6}
+                             CV. Elemwise{Composite{((i0 + i1) // i2)}}[(0, 1)]
+                              CW. TensorConstant{-2}
+                              <BU>
+                              CX. TensorConstant{2}
+                            CY. Shape_i{2}
+                             <CO>
+                           CZ. Elemwise{Sub}[(0, 1)]
+                            DA. Elemwise{add,no_inplace}
+                             <CU>
+                             DB. Elemwise{Composite{((i0 + i1) // i2)}}[(0, 1)]
+                              <CW>
+                              <BZ>
+                              <CX>
+                            DC. Shape_i{3}
+                             <CO>
+                          DD. GpuDnnConvDesc{border_mode=(2, 2), subsample=(1, 1), conv_mode='cross'}
+                           DE. MakeVector{dtype='int64'}
+                            <CQ>
+                            DF. Elemwise{Composite{Switch(LT(i0, i1), i0, i1)}}
+                             DG. TensorConstant{48}
+                             DH. Shape_i{0}
+                              <BN>
+                            DI. Elemwise{add,no_inplace}
+                             <BT>
+                             <CV>
+                            DJ. Elemwise{add,no_inplace}
+                             <BT>
+                             <DB>
+                           DK. MakeVector{dtype='int64'}
+                            <CR>
+                            DL. Shape_i{1}
+                             <CO>
+                            <CY>
+                            <DC>
+                          <CH>
+                          <CI>
+                         DM. GpuDimShuffle{x,0,x,x}
+                          DN. b
+                      DO. GpuDnnPoolDesc{ws=(3, 3), stride=(2, 2), mode='max', pad=(0, 0)}
+                     DP. GpuDnnPool
+                      DQ. GpuContiguous
+                       DR. GpuElemwise{Composite{(i0 * (i1 + Abs(i1)))},no_inplace}
+                        <K>
+                        DS. GpuElemwise{Add}[(0, 0)]
+                         DT. GpuDnnConv{algo='small', inplace=True}
+                          DU. GpuContiguous
+                           DV. GpuSubtensor{::, int64::}
+                            <BF>
+                            <CM>
+                          DW. GpuContiguous
+                           DX. W
+                          DY. GpuAllocEmpty
+                           <CQ>
+                           DZ. Shape_i{0}
+                            <DX>
+                           EA. Elemwise{Sub}[(0, 0)]
+                            <CT>
+                            EB. Shape_i{2}
+                             <DX>
+                           EC. Elemwise{Sub}[(0, 0)]
+                            <DA>
+                            ED. Shape_i{3}
+                             <DX>
+                          EE. GpuDnnConvDesc{border_mode=(2, 2), subsample=(1, 1), conv_mode='cross'}
+                           EF. MakeVector{dtype='int64'}
+                            <CQ>
+                            EG. Elemwise{Sub}[(0, 0)]
+                             <DH>
+                             <DF>
+                            <DI>
+                            <DJ>
+                           EH. MakeVector{dtype='int64'}
+                            <DZ>
+                            EI. Shape_i{1}
+                             <DX>
+                            <EB>
+                            <ED>
+                          <CH>
+                          <CI>
+                         EJ. GpuDimShuffle{x,0,x,x}
+                          EK. b
+                      EL. GpuDnnPoolDesc{ws=(3, 3), stride=(2, 2), mode='max', pad=(0, 0)}
+                   EM. GpuContiguous
+                    EN. W
+                   EO. GpuAllocEmpty
+                    EP. Shape_i{0}
+                     <BD>
+                    EQ. Shape_i{0}
+                     <EN>
+                    ER. Elemwise{Composite{((i0 + i1) - i2)}}
+                     <BX>
+                     ES. Elemwise{Composite{(((i0 + i1) - i2) // i3)}}[(0, 1)]
+                      ET. TensorConstant{3}
+                      <CV>
+                      <CY>
+                      <CX>
+                     EU. Shape_i{2}
+                      <EN>
+                    EV. Elemwise{Composite{((i0 + i1) - i2)}}
+                     <BX>
+                     EW. Elemwise{Composite{(((i0 + i1) - i2) // i3)}}[(0, 1)]
+                      <ET>
+                      <DB>
+                      <DC>
+                      <CX>
+                     EX. Shape_i{3}
+                      <EN>
+                   EY. GpuDnnConvDesc{border_mode=(1, 1), subsample=(1, 1), conv_mode='cross'}
+                    EZ. MakeVector{dtype='int64'}
+                     <EP>
+                     FA. Elemwise{Add}[(0, 0)]
+                      FB. Shape_i{0}
+                       <CN>
+                      FC. Shape_i{0}
+                       <DW>
+                     FD. Elemwise{add,no_inplace}
+                      <BT>
+                      <ES>
+                     FE. Elemwise{add,no_inplace}
+                      <BT>
+                      <EW>
+                    FF. MakeVector{dtype='int64'}
+                     <EQ>
+                     FG. Shape_i{1}
+                      <EN>
+                     <EU>
+                     <EX>
+                   <CH>
+                   <CI>
+                  FH. GpuDimShuffle{x,0,x,x}
+                   FI. b
+                FJ. Constant{192}
+              FK. GpuContiguous
+               FL. W
+              FM. GpuAllocEmpty
+               FN. Shape_i{0}
+                <W>
+               FO. Shape_i{0}
+                <FL>
+               FP. Elemwise{Composite{(i0 - (i1 + i2))}}
+                FQ. Elemwise{Add}[(0, 1)]
+                 FR. TensorConstant{7}
+                 <ES>
+                <EU>
+                FS. Shape_i{2}
+                 <FL>
+               FT. Elemwise{Composite{(i0 - (i1 + i2))}}
+                FU. Elemwise{Add}[(0, 1)]
+                 <FR>
+                 <EW>
+                <EX>
+                FV. Shape_i{3}
+                 <FL>
+              FW. GpuDnnConvDesc{border_mode=(1, 1), subsample=(1, 1), conv_mode='cross'}
+               FX. MakeVector{dtype='int64'}
+                <FN>
+                FY. Elemwise{Composite{Switch(LT(i0, i1), i0, i1)}}
+                 FZ. TensorConstant{192}
+                 GA. Shape_i{0}
+                  <EM>
+                <ER>
+                <EV>
+               GB. MakeVector{dtype='int64'}
+                <FO>
+                GC. Shape_i{1}
+                 <FL>
+                <FS>
+                <FV>
+              <CH>
+              <CI>
+             GD. GpuDimShuffle{x,0,x,x}
+              GE. b
+          GF. GpuContiguous
+           GG. W
+          GH. GpuAllocEmpty
+           GI. Shape_i{0}
+            <R>
+           GJ. Shape_i{0}
+            <GG>
+           GK. Elemwise{Sub}[(0, 0)]
+            GL. Elemwise{add,no_inplace}
+             GM. TensorConstant{10}
+             <ES>
+            GN. Elemwise{Add}[(0, 0)]
+             <EU>
+             <FS>
+             GO. Shape_i{2}
+              <GG>
+           GP. Elemwise{Sub}[(0, 0)]
+            GQ. Elemwise{add,no_inplace}
+             <GM>
+             <EW>
+            GR. Elemwise{Add}[(0, 0)]
+             <EX>
+             <FV>
+             GS. Shape_i{3}
+              <GG>
+          GT. GpuDnnConvDesc{border_mode=(1, 1), subsample=(1, 1), conv_mode='cross'}
+           GU. MakeVector{dtype='int64'}
+            <GI>
+            GV. Shape_i{0}
+             <FK>
+            <FP>
+            <FT>
+           GW. MakeVector{dtype='int64'}
+            <GJ>
+            GX. Shape_i{1}
+             <GG>
+            <GO>
+            <GS>
+          <CH>
+          <CI>
+         GY. GpuDimShuffle{x,0,x,x}
+          GZ. b
+      HA. GpuDnnPoolDesc{ws=(3, 3), stride=(2, 2), mode='max', pad=(0, 0)}
+     HB. GpuDnnPool
+      HC. GpuContiguous
+       HD. GpuElemwise{Composite{(i0 * (i1 + Abs(i1)))},no_inplace}
+        <K>
+        HE. GpuElemwise{Add}[(0, 0)]
+         HF. GpuDnnConv{algo='small', inplace=True}
+          HG. GpuContiguous
+           HH. GpuElemwise{Composite{(i0 * (i1 + Abs(i1)))},no_inplace}
+            <K>
+            HI. GpuElemwise{Add}[(0, 0)]
+             HJ. GpuDnnConv{algo='small', inplace=True}
+              HK. GpuContiguous
+               HL. GpuSubtensor{::, int64::}
+                <T>
+                <FJ>
+              HM. GpuContiguous
+               HN. W
+              HO. GpuAllocEmpty
+               <FN>
+               HP. Shape_i{0}
+                <HN>
+               HQ. Elemwise{Composite{(i0 - (i1 + i2))}}[(0, 2)]
+                <FQ>
+                <EU>
+                HR. Shape_i{2}
+                 <HN>
+               HS. Elemwise{Composite{(i0 - (i1 + i2))}}[(0, 2)]
+                <FU>
+                <EX>
+                HT. Shape_i{3}
+                 <HN>
+              HU. GpuDnnConvDesc{border_mode=(1, 1), subsample=(1, 1), conv_mode='cross'}
+               HV. MakeVector{dtype='int64'}
+                <FN>
+                HW. Elemwise{Sub}[(0, 0)]
+                 <GA>
+                 <FY>
+                <ER>
+                <EV>
+               HX. MakeVector{dtype='int64'}
+                <HP>
+                HY. Shape_i{1}
+                 <HN>
+                <HR>
+                <HT>
+              <CH>
+              <CI>
+             HZ. GpuDimShuffle{x,0,x,x}
+              IA. b
+          IB. GpuContiguous
+           IC. W
+          ID. GpuAllocEmpty
+           IE. Shape_i{0}
+            <HK>
+           IF. Shape_i{0}
+            <IC>
+           IG. Elemwise{Composite{(i0 - (i1 + i2 + i3))}}[(0, 3)]
+            <GL>
+            <EU>
+            <HR>
+            IH. Shape_i{2}
+             <IC>
+           II. Elemwise{Composite{(i0 - (i1 + i2 + i3))}}[(0, 3)]
+            <GQ>
+            <EX>
+            <HT>
+            IJ. Shape_i{3}
+             <IC>
+          IK. GpuDnnConvDesc{border_mode=(1, 1), subsample=(1, 1), conv_mode='cross'}
+           IL. MakeVector{dtype='int64'}
+            <IE>
+            IM. Shape_i{0}
+             <HM>
+            <HQ>
+            <HS>
+           IN. MakeVector{dtype='int64'}
+            <IF>
+            IO. Shape_i{1}
+             <IC>
+            <IH>
+            <IJ>
+          <CH>
+          <CI>
+         IP. GpuDimShuffle{x,0,x,x}
+          IQ. b
+      IR. GpuDnnPoolDesc{ws=(3, 3), stride=(2, 2), mode='max', pad=(0, 0)}
+   IS. W
+  IT. GpuDimShuffle{x,0}
+   IU. b
+ERROR (theano.compile.nanguardmode): val
+ERROR (theano.compile.nanguardmode): [<CudaNdarray object at 0x7f16a0871770>]
+ERROR (theano.compile.nanguardmode): var
+ERROR (theano.compile.nanguardmode): W
+ERROR (theano.compile.nanguardmode): A. W
+ERROR (theano.compile.nanguardmode): val
+ERROR (theano.compile.nanguardmode): [<CudaNdarray object at 0x7f16bf209870>]
+ERROR (theano.compile.nanguardmode): Node:
+ERROR (theano.compile.nanguardmode): GpuDot22(GpuElemwise{Composite{(i0 * (i1 + Abs(i1)))},no_inplace}.0, W)
+Traceback (most recent call last):
+  File "debug/model.py", line 386, in <module>
+    main(**kwargs)
+  File "debug/model.py", line 347, in main
+    train_err += train_fn(inputs, targets)
+  File "/home/hoa/.conda/envs/multiLabEnv/lib/python2.7/site-packages/theano/compile/function_module.py", line 607, in __call__
+    outputs = self.fn()
+  File "/home/hoa/.conda/envs/multiLabEnv/lib/python2.7/site-packages/theano/gof/link.py", line 898, in f
+    raise_with_op(node, *thunks)
+  File "/home/hoa/.conda/envs/multiLabEnv/lib/python2.7/site-packages/theano/gof/link.py", line 297, in raise_with_op
+    reraise(exc_type, exc_value, exc_trace)
+  File "/home/hoa/.conda/envs/multiLabEnv/lib/python2.7/site-packages/theano/gof/link.py", line 896, in f
+    wrapper(i, node, *thunks)
+  File "/home/hoa/.conda/envs/multiLabEnv/lib/python2.7/site-packages/theano/compile/nanguardmode.py", line 214, in nan_check
+    do_check_on(x, node, fn, False)
+  File "/home/hoa/.conda/envs/multiLabEnv/lib/python2.7/site-packages/theano/compile/nanguardmode.py", line 192, in do_check_on
+    assert False
+AssertionError: 
+Apply node that caused the error: GpuDot22(GpuElemwise{Composite{(i0 * (i1 + Abs(i1)))},no_inplace}.0, W)
+Toposort index: 252
+Inputs types: [CudaNdarrayType(float32, matrix), CudaNdarrayType(float32, matrix)]
+Inputs shapes: [(10, 4096), (4096, 4096)]
+Inputs strides: [(4096, 1), (4096, 1)]
+Inputs values: ['not shown', 'not shown']
+Outputs clients: [[GpuElemwise{Add}[(0, 0)](GpuDot22.0, GpuDimShuffle{x,0}.0)]]
+
+HINT: Re-running with most Theano optimization disabled could give you a back-trace of when this node was created. This can be done with by setting the Theano flag 'optimizer=fast_compile'. If that does not work, Theano optimizations can be disabled with 'optimizer=None'.
+HINT: Use the Theano flag 'exception_verbosity=high' for a debugprint and storage map footprint of this apply node.
