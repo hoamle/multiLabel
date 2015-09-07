@@ -127,7 +127,7 @@ def build_model(input_var=None):
     l1 = Conv2DDNNLayer(lin,
         #lasagne.layers.dimshuffle(lin, (0,3,1,2)),
         num_filters=96, filter_size=11, stride=4,
-        #W = Ws['W_0'], b = bs['b_0'],
+        W=lasagne.init.Constant(0.),#W = Ws['W_0'], b = bs['b_0'],
         nonlinearity=lasagne.nonlinearities.rectify
         )
     l1 = MaxPool2DDNNLayer(
@@ -142,7 +142,7 @@ def build_model(input_var=None):
     l1_0 = SliceLayer(l1, indices=slice(None,48), axis=1)
     l2_0 = Conv2DDNNLayer(
         l1_0, num_filters=128, filter_size=5, stride=1, pad=2,
-        #W = Ws['W0_1'], b = bs['b0_1'],
+        W=lasagne.init.Constant(0.),#W = Ws['W0_1'], b = bs['b0_1'],
         nonlinearity=lasagne.nonlinearities.rectify
     )
     l2_0p = MaxPool2DDNNLayer(
@@ -152,7 +152,7 @@ def build_model(input_var=None):
     l1_1 = SliceLayer(l1, indices=slice(48, None), axis=1)
     l2_1 = Conv2DDNNLayer(
         l1_1, num_filters=128, filter_size=5, stride=1, pad=2,
-        #W = Ws['W1_1'], b = bs['b1_1'],
+        W=lasagne.init.Constant(0.),#W = Ws['W1_1'], b = bs['b1_1'],
         nonlinearity=lasagne.nonlinearities.rectify
     )
     l2_1p = MaxPool2DDNNLayer(
@@ -168,7 +168,7 @@ def build_model(input_var=None):
     '''
     l3 = Conv2DDNNLayer(
         l2, num_filters=384, filter_size=3, stride=1, pad='same',
-        #W = Ws['W_2'], b = bs['b_2'],
+        W=lasagne.init.Constant(0.),#W = Ws['W_2'], b = bs['b_2'],
         nonlinearity=lasagne.nonlinearities.rectify
     )
 
@@ -180,14 +180,14 @@ def build_model(input_var=None):
     l3_0 = SliceLayer(l3, indices=slice(None,192), axis=1)
     l4_0 = Conv2DDNNLayer(
         l3_0, num_filters=192, filter_size=3, stride=1, pad='same',
-        #W = Ws['W0_3'], b = bs['b0_3'],
+        W=lasagne.init.Constant(0.),#W = Ws['W0_3'], b = bs['b0_3'],
         nonlinearity=lasagne.nonlinearities.rectify
     )
 
     l3_1 = SliceLayer(l3, indices=slice(192, None), axis=1)
     l4_1 = Conv2DDNNLayer(
         l3_1, num_filters=192, filter_size=3, stride=1, pad='same',
-        #W = Ws['W1_3'], b = bs['b1_3'],
+        W=lasagne.init.Constant(0.),#W = Ws['W1_3'], b = bs['b1_3'],
         nonlinearity=lasagne.nonlinearities.rectify
     )
 
@@ -198,7 +198,7 @@ def build_model(input_var=None):
     '''
     l5_0 = Conv2DDNNLayer(
         l4_0, num_filters=128, filter_size=3, stride=1, pad='same',
-        #W = Ws['W0_4'], b = bs['b0_4'],
+        W=lasagne.init.Constant(0.),#W = Ws['W0_4'], b = bs['b0_4'],
         nonlinearity=lasagne.nonlinearities.rectify
     )
     l5_0p = MaxPool2DDNNLayer(
@@ -207,7 +207,7 @@ def build_model(input_var=None):
 
     l5_1 = Conv2DDNNLayer(
         l4_1, num_filters=128, filter_size=3, stride=1, pad='same',
-        #W = Ws['W1_4'], b = bs['b1_4'],
+        W=lasagne.init.Constant(0.),#W = Ws['W1_4'], b = bs['b1_4'],
         nonlinearity=lasagne.nonlinearities.rectify
     )
     l5_1p = MaxPool2DDNNLayer(
@@ -224,7 +224,7 @@ def build_model(input_var=None):
     l6 = DenseLayer(l5,
         #lasagne.layers.dropout(l5, p=.0),
         num_units=4096,
-        #W = Ws['W_5'], b = bs['b_5'],
+        W=lasagne.init.Constant(0.),#W = Ws['W_5'], b = bs['b_5'],
         nonlinearity=lasagne.nonlinearities.rectify
     )
 
@@ -236,7 +236,7 @@ def build_model(input_var=None):
     l7 = DenseLayer(l6,
         #lasagne.layers.dropout(l6, p=.5),
         num_units=4096,
-        #W = Ws['W_6'], b = bs['b_6'],
+        W=lasagne.init.Constant(0.),#W = Ws['W_6'], b = bs['b_6'],
         nonlinearity=lasagne.nonlinearities.rectify
     )
 
@@ -302,6 +302,7 @@ def main(num_epochs=500, mode="run", batchsize=96):
     net0 = build_model(input_var)
 
     print "\ncompiling functions... "
+    '''
     # Build loss function
     prediction = lasagne.layers.get_output(net0)
     loss = lasagne.objectives.categorical_crossentropy(prediction,
@@ -313,11 +314,12 @@ def main(num_epochs=500, mode="run", batchsize=96):
     params = lasagne.layers.get_all_params(net0, 
                                            trainable=True)
     updates = lasagne.updates.rmsprop(loss, params, 
-                                      learning_rate=0.0001, rho=0.9, epsilon=1e-06)
+                                      learning_rate=0.01, rho=0.9, epsilon=1e-06)
     train_fn = theano.function([input_var, target_var], loss,
                                updates=updates,
                                mode=NanGuardMode(nan_is_error=True, inf_is_error=True, big_is_error=True)
                                )
+    '''
 
     ## Building loss evaluation for validation set
     va_prediction = lasagne.layers.get_output(net0, 
@@ -326,7 +328,10 @@ def main(num_epochs=500, mode="run", batchsize=96):
                                                           target_var)
     va_loss = va_loss.mean(axis=0)
 
-    va_fn = theano.function([input_var, target_var], va_loss)
+    va_fn = theano.function([input_var, target_var], 
+        #mode=NanGuardMode(nan_is_error=True, inf_is_error=True, big_is_error=True),
+        va_loss        
+        )
 
     
     print("compilation finished in {:.2f}").format(
@@ -338,6 +343,7 @@ def main(num_epochs=500, mode="run", batchsize=96):
          
     print "Starting training with batchsize of %d ..." %(batchsize)    
     for epoch in range(num_epochs):
+        '''
         # In each epoch, we do a full pass over the training data:
         train_err = 0
         train_batches = 0
@@ -346,29 +352,32 @@ def main(num_epochs=500, mode="run", batchsize=96):
             inputs = center_fn(inputs, imgMean_vals)
             train_err += train_fn(inputs, targets)
             train_batches += 1
-
+        '''
         # And a full pass over the validation data:
         if mode!="toy":
             va_err = 0
             va_batches = 0
-            for inputs, targets in iterate_minibatches(Xva, Yva, batchsize, shuffle=True):
+            for inputs, targets in iterate_minibatches(Xtr, Ytr, batchsize, shuffle=True):
                 inputs = center_fn(inputs, imgMean_vals)
                 va_err += va_fn(inputs, targets)
                 va_batches += 1
 
         # Then we print the results for this epoch:
+        '''
         print("Epoch {} of {} took {:.3f}s".format(
             epoch + 1, num_epochs, time.time() - start_time))
         print("  training loss:\t\t{:.6f}\t{:d}".format(train_err / train_batches, train_batches))
+        '''
         if mode!="toy":
             print("  validation loss:\t\t{:.6f}".format(va_err / va_batches))
 
             # Save the model after every 5 epochs
+            '''
             if epoch%5==0: 
                 np.savez('Data/MSRCv2/model_'+str(epoch)+'.npz', 
                     lasagne.layers.get_all_param_values(net0))
             
-        '''     
+        
         if mode=="toy" and np.allclose(train_err,0):
             print "Error for toy problem is 0. Training finished"
             break
