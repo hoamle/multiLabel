@@ -1,6 +1,6 @@
 from sklearn.cross_validation import train_test_split
 import os, glob
-from natsort import natsorted
+#from natsort import natsorted
 import numpy as np
 import cv2
 
@@ -13,8 +13,8 @@ def b01c_to_bc01(X):
 
     return out
 
-def data_aug(mat, isinput=True, n_ops=10, b01c=True, mode="run"):
-    # resize, crop, mirror if "input", simply tile if "target"
+def data_aug(mat, isinput=True, n_ops=5, b01c=True, mode="run"):
+    # resize and crop if "input", simply tile if "target"
     # Compute image mean if isXtr and isInput are both True
     # image mean is computed on the original images only
     n_samples = len(mat)
@@ -33,11 +33,9 @@ def data_aug(mat, isinput=True, n_ops=10, b01c=True, mode="run"):
             out[3*n_samples:4*n_samples,:,:,:] = mat[:,:227,-227:,:]
             out[4*n_samples:5*n_samples,:,:,:] = mat[:,-227:,-227:,:]
                 
-            # 5 mirrors
-            out[5*n_samples:,:,:,:] = out[:5*n_samples,:,::-1,:]
-        
+            
         else:            
-            start_idx=14
+            start_idx=(256-227)/2
             out = mat[:,start_idx:start_idx+227,start_idx:start_idx+227,:]
             
         if b01c:
@@ -73,7 +71,7 @@ def data_prep(root_dir = "/home/hoa/Desktop/multiLabel/", mode="run"):
     if mode=="toy": 
         n_ops=1
     else: 
-        n_ops=10
+        n_ops=5
     img_mean=np.mean(X[:len(X)/n_ops,:,:,:],
         axis=0, keepdims=True, dtype="float32")        
     

@@ -11,26 +11,9 @@ from natsort import natsorted
 import numpy as np
 import cPickle as pickle
 
-from data_prep import data_prep
 from nolearn.lasagne import NeuralNet, BatchIterator, TrainSplit
-
-# for passing training hyper-params when for eg learning rate decay
-def float32(k):
-    return np.cast['float32'](k)
-
-class AdjustVariable(object):
-    def __init__(self, name, start=0.03, stop=0.001):
-        self.name = name
-        self.start, self.stop = start, stop
-        self.ls = None
-
-    def __call__(self, nn, train_history):
-        if self.ls is None:
-            self.ls = np.linspace(self.start, self.stop, nn.max_epochs)
-
-        epoch = train_history[-1]['epoch']
-        new_value = float32(self.ls[epoch - 1])
-        getattr(nn, self.name).set_value(new_value)
+from data_prep import data_prep
+from utils import * 
 
 # model definition
 def build_model(num_epochs, batchsize):
@@ -65,35 +48,32 @@ def build_model(num_epochs, batchsize):
         hidden7_num_units=4096, dropout7_p=0.5,
         output_num_units=22, output_nonlinearity=lasagne.nonlinearities.sigmoid,
 
-        # optimise
+        # optimisation
         objective_loss_function=lasagne.objectives.binary_crossentropy,
         # optimisation method
-        update=lasagne.updates.nesterov_momentum,
-        update_learning_rate=theano.shared(float32(1e-2)),
-        update_momentum=theano.shared(float32(0.9)),
+        update=lasagne.updates.rmsprop,
+        update_learning_rate=theano.shared(float32(1e-5)),
+        update_rho=theano.shared(float32(0.9)),
+        update_epsilon=theano.shared(float32(1e-8)),
+        # optimisation schedule
+        on_epoch_finished=[
+            AdjustVariable('update_learning_rate', start=1e-5, stop=3e-9)            
+            ],
 
+        # Miscs
         train_split=TrainSplit(eval_size=0.3), regression = True, # to not invoke StratifiedKFold 
         batch_iterator_train=BatchIterator(batch_size=batchsize),
         max_epochs=num_epochs,
         verbose=1
     )
     return net
-   
-def main(num_epochs=500, mode="run", batchsize=96, problem="multi"): 
+
+def main(num_epochs=2000, mode="run", batchsize=96, problem="multi"): 
     X, Y, imgMean_vals = data_prep(mode=mode)
-    net0 = build_model(num_epochs, batchsize)
-    
-    # A single label toy problem
-    if problem=="single": 
-        row,col = np.where(Y==1)
-        idx = np.unique(row, return_index=True)[1]
-        id1s = np.zeros((len(Y),), dtype="int32")
-        for i in range(len(idx)-1):
-            id1s[i] = np.random.randint(idx[i],idx[i+1],1)
-        id1s[-1]=np.random.randint(idx[i+1],len(row),1)
-        Y = col[id1s].astype("int32")
-      
-    net0.fit(X,Y) # it seems nolearn is no good for multiLab problem
+    '''HAVENT NORMALISE INPUT DATA'''
+
+    net0 = build_model(num_epochs, batchsize)     
+    net0.fit(X, Y) 
 
 if __name__ == '__main__':
     kwargs = {}
@@ -101,7 +81,5 @@ if __name__ == '__main__':
         kwargs['num_epochs'] = int(sys.argv[1])
     if len(sys.argv) > 2:
         kwargs['mode'] = sys.argv[2]
-    if len(sys.argv) > 3:
-        kwargs['problem'] = sys.argv[3]
     
     main(**kwargs)
