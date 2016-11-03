@@ -24,7 +24,7 @@ def main(reps, pretrained_w_path, do_module1, init_seed=0, load_t=0, num_epochs=
     batchsize=96, fine_tune=0, patience=500, lr_init = 1e-3, optim='adagrad', toy=0,
     num_classes=374):
     res_root = '/home/hoa/Desktop/projects/resources'
-    X_path=osp.join(res_root, 'datasets/corel5k/X_train_rgb.npy')
+    X_path=osp.join(res_root, 'datasets/corel5k/Xaug_train_b01c.npy')
     Y_path=osp.join(res_root, 'datasets/corel5k/Y_train.npy')
     MEAN_IMG_PATH=osp.join(res_root, 'models/ilsvrc_2012_mean.npy')
     snapshot=50 # save model after every `snapshot` epochs
@@ -58,7 +58,7 @@ def main(reps, pretrained_w_path, do_module1, init_seed=0, load_t=0, num_epochs=
     if len(X) != len(Y):
         print 'Inconsistent number of input images and labels. X is possibly augmented.'
     
-    MEAN_IMG = np.load(MEAN_IMG_PATH)
+    MEAN_IMG = np.load(MEAN_IMG_PATH).astype('float32')
     MEAN_IMG_227 = skimage.transform.resize(
             np.swapaxes(np.swapaxes(MEAN_IMG,0,1),1,2), (227,227), mode='nearest', preserve_range=True)    
     MEAN_IMG = np.swapaxes(np.swapaxes(MEAN_IMG_227,1,2),0,1).reshape((1,3,227,227))
@@ -164,11 +164,11 @@ def main(reps, pretrained_w_path, do_module1, init_seed=0, load_t=0, num_epochs=
             idx_train_val = np.arange(len(Y))
             
             # Module 2 training set is composed of module 1 training and validation set 
-            idx_aug_train_val = data_aug(idx_train_val, mode='aug', isMat='idx')
-            Xaug_train_val = data_aug(X, mode='noaug', isMat='X')
+            idx_aug_train_val = data_aug(idx_train_val, mode='aug', isMat='idx', N=N)
+            Xaug_train_val = X
             if Xaug_train_val.shape[1]!=3:
                 Xaug_train_val = b01c_to_bc01(Xaug_train_val)
-            Yaug_train_val = Y
+            Yaug_train_val = data_aug(Y, mode='aug', isMat='Y', N=N)
 
             # train/val/test set for module 1
             Y_train, Y_val, idx_train, idx_val = train_test_split(
@@ -183,7 +183,7 @@ def main(reps, pretrained_w_path, do_module1, init_seed=0, load_t=0, num_epochs=
             Yaug_val = Y_val
 
             # Test set
-            X_test = np.load(osp.join(res_root,'datasets/corel5k/X_test_rgb.npy'))
+            X_test = np.load(osp.join(res_root,'datasets/corel5k/Xaug_test_b01c.npy'))
             if X_test.shape[1]!=3:
                 X_test = b01c_to_bc01(X_test)
             Y_test = np.load(osp.join(res_root,'datasets/corel5k/Y_test.npy'))
