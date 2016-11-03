@@ -32,7 +32,7 @@ def data_aug(mat, mode, isMat, N):
             
     #     if b01c:
     #         out = b01c_to_bc01(out)
-    if isMat=='idx':
+    elif isMat=='idx':
         out = np.tile(mat, n_ops)
                                               
         if mode=="aug":
