@@ -1,3 +1,4 @@
+# from https://github.com/Lasagne/Recipes/blob/master/modelzoo/caffe_reference.py
 from lasagne.layers import InputLayer, LocalResponseNormalization2DLayer
 from lasagne.layers.dnn import Conv2DDNNLayer as Conv2DLayer
 from lasagne.layers.dnn import MaxPool2DDNNLayer as MaxPool2DLayer
