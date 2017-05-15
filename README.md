@@ -4,6 +4,6 @@ Source code for paper [Fully automated multi-label image annotation by Convoluti
 
 *NB: The code was intended for internal development, we have not refactored to make it ready-to-run in user-friendly fashion yet. Sorry for the inconvenience.*
 * `cd` to `./src/` before running the code
-* `t_train` takes a while to generate, and will be stored in `./t/` to reuse. 
-* all evaluation metrics to be stored in `./metrics/`
-* snapshots of scoring module to be stored in `../snapshot_models/`
+* `t_train` takes a while to generate, and will be stored in `./src/t/` to reuse. 
+* all evaluation metrics to be stored in `./src/metrics/`
+* snapshots of scoring module to be stored in `./snapshot_models/`
